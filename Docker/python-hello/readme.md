@@ -62,23 +62,56 @@ Hello from your custom Python Docker container!
 
 ## ⚠️ Common Mistakes & Fixes
 
-### ❌ Mistake 1: Incomplete COPY command
+Here's the corrected and well-formatted section of your `.md` file, with the updated explanation for Mistake 1 and consistent formatting:
+
+---
+
+### ❌ Mistake 1: Incomplete `COPY` Command
 
 ```Dockerfile
 COPY app.py
 ```
 
-**Error:**
+**❌ Error:**
 
 ```
-COPY requires at least two arguments
+COPY requires at least two arguments, but only one was provided
 ```
 
-✅ **Fix:**
+Docker expects the following syntax:
+
+```
+COPY <source> <destination>
+```
+
+In your Dockerfile, the line:
+
+```Dockerfile
+COPY app.py
+```
+
+is **missing the destination path**.
+
+---
+
+✅ **Fix the Dockerfile**
+
+Change:
+
+```Dockerfile
+COPY app.py
+```
+
+To:
 
 ```Dockerfile
 COPY app.py .
 ```
+
+This tells Docker to:
+
+* Copy `app.py` from your local directory
+* Into `.` (the current working directory inside the container, which we set to `/app`)
 
 ---
 
